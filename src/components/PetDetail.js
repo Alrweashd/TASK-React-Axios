@@ -1,6 +1,8 @@
 import React from "react";
 import petsData from "../petsData";
 import { Navigate, useParams } from "react-router-dom";
+import { removePetById } from "../api/pets";
+
 const PetDetail = () => {
   const { petId } = useParams();
   const pet = petsData.find((e) => e.id == petId);
@@ -27,7 +29,10 @@ const PetDetail = () => {
               Adobt
             </button>
 
-            <button className="w-[70px] border border-black rounded-md  hover:bg-red-400">
+            <button
+              className="w-[70px] border border-black rounded-md  hover:bg-red-400"
+              onClick={() => removePetById(pet.id)}
+            >
               Delete
             </button>
           </div>

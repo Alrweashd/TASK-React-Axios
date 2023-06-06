@@ -17,13 +17,15 @@ const getPetById = async (id) => {
 
 const addPet = async (name, type, image, adopted) => {
   //   let para = { id: this.id, name: this.name, type: this.type, ad };
-  const res = await instance.post("/pets/", {
+  await instance.post("/pets/", {
     name: name,
     type: type,
     image: image,
     adopted: adopted,
   });
-  return res;
+};
+const removePetById = async (id) => {
+  await instance.delete(`/pets/${id}`);
 };
 
-export { getAllPets, getPetById, addPet };
+export { getAllPets, getPetById, addPet, removePetById };
