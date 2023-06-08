@@ -9,6 +9,7 @@ const Modal = ({ show, setShowModal }) => {
   const [available, setAvailable] = useState(0);
   const handleSumbit = () => {
     addPet(name, type, image, available);
+    setShowModal(false);
   };
   if (!show) return "";
   return (

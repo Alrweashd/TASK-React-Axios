@@ -10,8 +10,8 @@ const getAllPets = async () => {
   return res.data;
 };
 
-const getPetById = async (id) => {
-  const res = await instance.get(`/pets/${id}`);
+const getPetById = async (petId) => {
+  const res = await instance.get(`/pets/${petId}`);
   return res.data;
 };
 

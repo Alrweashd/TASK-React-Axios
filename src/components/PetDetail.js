@@ -1,13 +1,23 @@
 import React from "react";
 import petsData from "../petsData";
 import { Navigate, useParams } from "react-router-dom";
-import { removePetById } from "../api/pets";
+import { getPetById, removePetById } from "../api/pets";
+import { useQuery } from "@tanstack/react-query";
 
 const PetDetail = () => {
+  //get data using query
+  // const { data, isLoading } = useQuery({
+  //   queryFn: () => getPetById(id),
+  // });
+
   const { petId } = useParams();
-  const pet = petsData.find((e) => e.id == petId);
+  const { data: pet, isLoading } = useQuery({
+    queryFn: () => getPetById(petId),
+  });
+  // const pet = petsData.find((e) => e.id == petId);
+  if (isLoading) return <h1>Loading....</h1>;
   if (!pet) {
-    return <Navigate to="/" replace={true} />;
+    return <h1>pet not found</h1>;
   } else {
     // const pet = petsData[0];
     return (

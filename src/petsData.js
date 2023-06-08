@@ -35,7 +35,7 @@ const data = [
     image: "https://i.ibb.co/2ZzG5pj/kitten-love-1.png",
   },
   {
-    id: 6,
+    id: 40,
     name: "George",
     type: "Rabbit",
     adopted: 0,
