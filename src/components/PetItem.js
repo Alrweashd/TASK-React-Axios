@@ -1,16 +1,19 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import { Link } from "react-router-dom";
 import { removePetById } from "../api/pets";
 const PetItem = ({ pet }) => {
   //delete by mutation
-
+  const queryClient = useQueryClient();
   const {
     mutate: deletePet,
     isLoading,
     error,
   } = useMutation({
     mutationFn: removePetById,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["pets"]);
+    },
   });
   if (isLoading) return <h1>Deleting</h1>;
 

@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import Input from "./Input";
 import { addPet } from "../api/pets";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import ValidAddPet from "../Validations/ValidAddPet";
 
 const Modal = ({ show, setShowModal }) => {
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [image, setImage] = useState("");
   const [available, setAvailable] = useState(0);
+
+  const queryClient = useQueryClient();
+
   const handleSumbit = () => {
-    addPet(name, type, image, available);
+    ValidAddPet(name, type, image, available);
+    // addPet(name, type, image, available);
     setShowModal(false);
+    queryClient.invalidateQueries(["pets"]);
   };
   if (!show) return "";
   return (

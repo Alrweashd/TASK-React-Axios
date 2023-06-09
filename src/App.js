@@ -13,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/list" element={<PetList />} />
+        here
         <Route path="/list/:petId" element={<PetDetail />} />
       </Routes>
     </div>
