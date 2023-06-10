@@ -20,8 +20,8 @@ const addPet = async (name, type, image, adopted) => {
   await instance.post("/pets/", {
     name: name,
     type: type,
-    image: image,
     adopted: adopted,
+    image: image,
   });
 };
 const removePetById = async (id) => {

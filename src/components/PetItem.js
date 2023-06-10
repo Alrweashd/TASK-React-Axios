@@ -16,7 +16,7 @@ const PetItem = ({ pet }) => {
     },
   });
   if (isLoading) return <h1>Deleting</h1>;
-
+  console.log(pet);
   return (
     <div>
       <div className="w-[300px] h-[400px]  border border-black rounded-md flex flex-col justify-between items-center p-4">

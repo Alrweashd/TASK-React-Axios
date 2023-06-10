@@ -12,6 +12,7 @@ const PetDetail = () => {
 
   const { petId } = useParams();
   const { data: pet, isLoading } = useQuery({
+    queryKey: ["pets", petId],
     queryFn: () => getPetById(petId),
   });
   // const pet = petsData.find((e) => e.id == petId);

@@ -9,14 +9,37 @@ const Modal = ({ show, setShowModal }) => {
   const [type, setType] = useState("");
   const [image, setImage] = useState("");
   const [available, setAvailable] = useState(0);
-
+  // const [form, setForm] = useState({});
   const queryClient = useQueryClient();
-
+  // const handleForm = (e) =>{
+  // setForm({...form , [e.target.name]:e.target.value})
+  // }
+  const formRester = () => {
+    setName("");
+    setType("");
+    setImage("");
+    setAvailable("");
+  };
+  const {
+    mutate: petAdder,
+    isLoading,
+    error,
+  } = useMutation({
+    mutationFn: () => addPet(name, type, image, available),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["pets"]);
+      formRester();
+    },
+  });
   const handleSumbit = () => {
-    ValidAddPet(name, type, image, available);
+    if (ValidAddPet(name, type, image, available)) {
+      petAdder();
+    }
+    //petAdder();
+
+    //petAdder(name, type, image, available);
     // addPet(name, type, image, available);
     setShowModal(false);
-    queryClient.invalidateQueries(["pets"]);
   };
   if (!show) return "";
   return (
